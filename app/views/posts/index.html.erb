@@ -13,7 +13,6 @@
                 <div class="post-img">
                   <% first_image_tag = post.content.body.to_html.match(/<img [^>]*src=["']([^"']+)/)&.captures&.first %>
                   <% if first_image_tag %>
-                    <%= cdn_image_url(first_image_tag) %>
                     <div class="post-preview-image">
                       <%= image_tag(first_image_tag, class: "img-fluid rounded") %>
                     </div>
