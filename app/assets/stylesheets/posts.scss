@@ -1,3 +1,5 @@
+@import "bootstrap";
+
 .comment-header {
   display: flex;
   .user-pic {
@@ -37,4 +39,14 @@
 
 .card-link:hover {
   color: #3a3636;
+}
+
+.social-icons li {
+  display: inline;
+  margin-right: 20px;
+}
+
+.social-icons img {
+  width: 30px;
+  height: 30px;
 }
