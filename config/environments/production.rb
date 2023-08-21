@@ -27,8 +27,8 @@ Rails.application.configure do
   # Compress CSS using a preprocessor.
   # config.assets.css_compressor = :sass
 
-  config.action_controller.asset_host = ENV.fetch("CDN_HOST")
-  config.action_mailer.asset_host = ENV.fetch("CDN_HOST")
+  config.action_controller.asset_host = ENV["CDN_HOST"]
+  config.action_mailer.asset_host = ENV["CDN_HOST"]
 
   config.serve_static_files = true
   config.assets.digest = true
@@ -39,7 +39,7 @@ Rails.application.configure do
   config.assets.compile = true
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
-  config.asset_host = ENV.fetch("CDN_HOST")
+  config.asset_host = ENV["CDN_HOST"]
 
   # Specifies the header that your server uses for sending files.
   # config.action_dispatch.x_sendfile_header = "X-Sendfile" # for Apache
