@@ -41,7 +41,7 @@ Ckeditor.setup do |config|
 
   # Customize ckeditor assets path
   # By default: nil
-  config.asset_path = 'http://d3nnkg2bmwmyy0.cloudfront.net/assets/ckeditor/'
+  config.asset_path = "https://#{ENV.fetch('CDN_HOST')}/assets/ckeditor/"
 
   # CKEditor CDN
   # More info here http://cdn.ckeditor.com/

@@ -14,6 +14,7 @@ class Admin::PostsController < ApplicationController
   end
 
   def create
+    puts post_params
     @post = Post.new(post_params)
     if @post.save
       redirect_to @post, notice: 'Post was successfully created.'
