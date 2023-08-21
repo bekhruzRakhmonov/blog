@@ -1,0 +1,31 @@
+<div class="container mt-4">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card-img">
+            <%= image_tag @admin.image, class: "rounded", style: "width: 200px;" %>
+        </div>
+        <div class="card-body">
+            <h2 class="card-title">
+                <%= @admin.name %>
+            </h2>
+            <p class="card-text">
+                <b>Email:</b> <%= @admin.email %>
+                <br>
+                <b>About:</b> <%= @admin.about == "" ? "No about" : @admin.about %>
+            </p>
+        </div>
+        <div class="card-footer">
+            <div class="row">
+            <div class="col">
+                <span class="text-muted">
+                Joined <%= time_ago_in_words(@admin.created_at) %> ago
+                </span>
+            </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  
+  <div class="container text-center mt-4">
+    <%= link_to 'Back' , admin_admins_path, class: "btn btn-secondary" %>
+  </div>

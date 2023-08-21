@@ -1,0 +1,31 @@
+<div class="container mt-3">    
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Profile Image</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Joined</th>
+          <th>Last login</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+          <tr> 
+            <td>
+              <% if user.image.present? %>
+                <%= image_tag user.image, class: "img-thumbnail", width: 50 %>
+              <% else %>
+                No Image
+              <% end %>
+            </td>
+            <td><%= user.name %></td>
+            <td><%= user.email %></td>
+            <td><%= time_ago_in_words(user.created_at) %> ago</td>
+            <td><%= time_ago_in_words(user.updated_at) %> ago</td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+</div>
+  

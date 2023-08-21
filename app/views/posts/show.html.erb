@@ -1,0 +1,87 @@
+<div class="container mt-4 post-container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card-body">
+        <h2 class="card-title">
+          <%= @post.title %>
+        </h2>
+        <p>
+        <span class="text-muted">
+          Bekhruzbek Rakhmonov • <%= @post.created_at.strftime('%B %e, %Y') %>
+        </span>
+        </p>
+        <p class="card-text">
+          <%= @post.content %>
+        </p>
+      </div>
+      <div class="card-footer">
+        <div class="row">
+          <div class="col">
+            <span class="text-muted">
+              <%= time_ago_in_words(@post.created_at) %> ago
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="my-4">
+
+  <h2 class="text-center">Comments</h2>
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <% if user_signed_in? %>
+        <%= form_for([@post, @post.comments.build], html: { class: 'comment-form' }) do |f| %>
+          <div class="form-group">
+            <%= f.label :body, "Add a comment:" %>
+              <%= f.text_area :body, class: "form-control" , rows: 4, required: true %>
+          </div>
+        </br>
+          <div class="form-group">
+            <%= f.submit "Submit Comment" , class: "btn btn-primary" %>
+          </div>
+          <% end %>
+            <% else %>
+              <p class="text-center">Please log in to leave a comment.</p>
+              <% end %>
+    </div>
+  </div>
+
+  <hr class="my-4">
+
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <% if @post.comments.any? %>
+        <ul class="list-group">
+          <% @post.comments.each do |comment| %>
+          <% if comment.user_id? %>
+
+            <li class="list-group-item">
+              <div class="comment-header">
+                <img src="<%= comment.user&.image %>" alt="" class="user-pic">
+                <div class="sized-box"></div>
+                <div class="comment-details">
+                  <strong>
+                    <%= comment.user.name %>
+                  </strong>
+                  <% if comment.created_at.present? %>
+                    <span class="comment-date">
+                      <%= comment.created_at.strftime('%B %d, %Y') %>
+                    </span>
+                    <% end %>
+                </div>
+              </div>
+              <p class="comment-body">
+                <%= comment.body %>
+              </p>
+            </li>
+            <% end %>
+            <% end %>
+        </ul>
+      <% else %>
+        <p class="text-center">No comments yet.</p>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,80 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-8">
+      <% if @posts.all.present? %>
+        <% @posts.all.each do |post| %>
+          <a href="<%= post_path(post) %>" class="card-link">
+            <div class="card mb-4">
+              <div class="card-body">
+                <h2 class="card-title"><%= post.title %></h2>
+                <h5 class="card-subtitle mb-2 text-muted">
+                  <%= post.title_description %>, <%= post.created_at.strftime('%b %d, %Y') %>
+                </h5>
+                <div class="post-img">
+                  <% first_image_tag = post.content.body.to_html.match(/<img [^>]*src=["']([^"']+)/)&.captures&.first %>
+                  <% if first_image_tag %>
+                    <%= cdn_image_url(first_image_tag) %>
+                    <div class="post-preview-image">
+                      <%= image_tag(first_image_tag, class: "img-fluid rounded") %>
+                    </div>
+                  <% end %>
+                </div>
+                <p class="card-text"><%= truncate(strip_tags(post.content.body&.to_plain_text), length: 200, omission: '...') %></p>
+              </div>
+            </div>
+          </a>
+        <% end %>
+      <% else %>
+          <h1>No posts yet</h1>
+      <% end %>
+      <nav aria-label="Pagination">
+        <ul class="pagination justify-content-end">
+          <li class="page-item <%= @posts.first_page? ? 'disabled' : '' %>">
+            <a class="page-link" href="?page=<%= @posts.prev_page %>">Previous</a>
+          </li>
+          <% @posts.pages.each do |page| %>
+            <li class="page-item <%= 'active' if @posts.current_page == page  %>" aria-current="page">
+              <a class="page-link" href="?page=<%= page %>"><%= page %></a>
+            </li>
+          <% end %>
+          <li class="page-item <%= @posts.last_page? ? 'disabled' : '' %>">
+            <a class="page-link" href="?page=<%= @posts.next_page %>">Next</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <div class="col-lg-4">
+      <!-- <div class="card mb-4">
+        <div class="card-body">
+          <h2 class="card-title">About Me</h2>
+          <div class="fakeimg rounded" style="height:100px;">Image</div>
+          <p class="card-text">Some text about me in culpa qui officia deserunt mollit anim..</p>
+        </div>
+      </div> -->
+      <div class="card mb-4">
+        <div class="card-body">
+          <h3 class="card-title">Popular Post</h3>
+          <% @popular_posts.each do |post| %>
+            <a href="<%= post_path(post) %>" class="card-link" style="color: #fff;">
+              <div class="fakeimg rounded">
+                <p class="card-text"><%= post.title %></p>
+                <% first_image_tag = post.content.body.to_html.match(/<img [^>]*src=["']([^"']+)/)&.captures&.first %>
+                    <% if first_image_tag %>
+                      <div class="post-preview-image">
+                        <%= image_tag(first_image_tag, class: "img-fluid rounded") %>
+                      </div>
+                    <% end %>
+              </div>
+            </a>
+          <% end %>
+        </div>
+      </div>
+      <div class="card mb-4">
+        <div class="card-body">
+          <h3 class="card-title">Follow Me</h3>
+          <p class="card-text">Some text..</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

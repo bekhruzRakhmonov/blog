@@ -1,0 +1,39 @@
+<%= form_with(model: @project, url: admin_project_path(@project), method: :patch, multipart: true, data: {'abide' => true}) do |form| %>
+  <div class="row">
+    <div class="col-lg-12">
+      <span>
+        Hold Ctrl, or Command on Mac, to select more than one file.
+      </span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="form-group">
+        <%= form.label :title %>
+        <%= form.text_field :title, class: "form-control" %>
+
+        <%= form.label :description %>
+        <%= form.text_area :description, class: "form-control" %>
+
+        <%= form.label :images %>
+        <%= form.file_field :images, class: "form-control", multiple: true, id: "photos" %>
+        <br>
+        <h4 class="pics-label hide">Pics to be uploaded:</h4>
+        <ul id="photos_clearing" class="clearing-thumbs" data-clearing>
+        </ul>
+        <br>
+        <hr>
+        <p>Select to remove</p>
+        <% @project.images.each_with_index do |image, index| %>
+            <%= image_tag image, class: "project-image" %>
+            <%= check_box_tag "project[remove_images][]", image.id %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col-lg-12">
+      <%= form.submit class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>

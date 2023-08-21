@@ -1,0 +1,29 @@
+//= require actiontext
+@import "bootstrap";
+@import "posts";
+@import "admin/projects";
+
+body {
+  font-family: 'Ubuntu', sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+  margin: 0;
+  word-spacing: 2px;
+  .navbar {
+    .container {
+      .nav-item {
+        padding-left: 25px;
+        span {
+          font-size: large;
+        }
+      }
+    }
+    #navbarNav {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}
+

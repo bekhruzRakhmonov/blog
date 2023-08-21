@@ -1,0 +1,40 @@
+.comment-header {
+  display: flex;
+  .user-pic {
+    height: 50px;
+    width: 50px;
+    border-radius: 50px;
+    object-fit: cover;
+  }
+
+  .comment-details {
+    display: flex;
+    flex-direction: column;
+  }
+  
+}
+
+.post-container {
+  max-width: 1050px;
+}
+
+.post-list-container {
+  width: 100%;
+}
+
+.list-group {
+  list-style-type: none;
+}
+
+.text-muted {
+  font-size: small;
+}
+
+.card-link {
+  color: black;
+  text-decoration-line: none;
+}
+
+.card-link:hover {
+  color: #3a3636;
+}
