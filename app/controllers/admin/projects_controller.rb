@@ -39,6 +39,7 @@ class Admin::ProjectsController < ApplicationController
       
         @project.title = project_params[:title]
         @project.description = project_params[:description]
+        @project.link = project_params[:link]
         @project.images.attach(project_params[:images])
       
         if @project.save
@@ -57,7 +58,7 @@ class Admin::ProjectsController < ApplicationController
     private
 
     def project_params
-        params.require(:project).permit(:title, :description, images: [], remove_images: [])
+        params.require(:project).permit(:title, :description, :link, images: [], remove_images: [])
     end
 
     def set_project
