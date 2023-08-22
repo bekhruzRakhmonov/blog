@@ -26,7 +26,7 @@
     <div class="row justify-content-center">
       <div class="col-md">
         <% @project.images.each do |image| %>
-            <%= link_to image_tag(image, class: "project-image"), image %>
+            <%= asset_path(image.filename) %>
         <% end %>
       </div>
     </div>
